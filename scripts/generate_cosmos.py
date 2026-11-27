@@ -203,7 +203,127 @@ def footer():
     (ASSETS / "cosmos-footer.svg").write_text(svg)
 
 
+ICONS = {
+    "shield": '<path d="M20 8 L30 12 V20 C30 26 25.5 30.5 20 32 C14.5 30.5 10 26 10 20 V12 Z"/><path d="M15.5 20 L19 23.5 L25 16.5"/>',
+    "terminal": '<rect x="8" y="11" width="24" height="18" rx="3"/><path d="M12.5 17 L16 20 L12.5 23"/><path d="M18.5 23 H26"/>',
+    "graph": '<path d="M20 11 L20 21 M20 21 L11 27 M20 21 L29 27 M11 27 L29 27"/>'
+             '<circle cx="20" cy="11" r="2.8" fill="#0d1117"/><circle cx="20" cy="21" r="2.8" fill="#58a6ff"/>'
+             '<circle cx="11" cy="27" r="2.8" fill="#0d1117"/><circle cx="29" cy="27" r="2.8" fill="#0d1117"/>',
+    "drone": '<path d="M13 13 L27 27 M27 13 L13 27"/><rect x="16.5" y="16.5" width="7" height="7" rx="2" fill="#0d1117"/>'
+             + "".join(
+                 f'<ellipse cx="{x}" cy="{y}" rx="5" ry="1.3"><animateTransform attributeName="transform" type="rotate" '
+                 f'from="0 {x} {y}" to="360 {x} {y}" dur="0.{4+i}s" repeatCount="indefinite"/></ellipse>'
+                 for i, (x, y) in enumerate([(12, 12), (28, 12), (12, 28), (28, 28)])
+             ),
+}
+
+CARDS = [
+    ("shield", "NOW BUILDING", ["Cybersecurity SaaS", "backends"],
+     ["Backend systems for attack", "surface & security platforms."],
+     ["ASM", "THREAT INTEL", "SAST", "DAST", "CSPM"]),
+    ("terminal", "WEAPON OF CHOICE", ["Go for scale.", "Python for the rest."],
+     ["High-performance, scalable", "APIs and services."],
+     ["GO", "PYTHON", "DEVOPS"]),
+    ("graph", "ALL IN ON", ["Autonomous", "AI agents"],
+     ["Automating operations that", "once took hours of effort."],
+     ["LANGCHAIN", "LANGGRAPH", "DEEP AGENTS"]),
+    ("drone", "OFF SCREEN", ["FPV freestyle", "drones"],
+     ["Every component, wire and", "tune, built from scratch."],
+     ["LICENSED PILOT", "FPV", "BUILDER"]),
+]
+
+TIMELINE = [
+    ("Embedded", "COLLEGE · HARDWARE"),
+    ("Mobile", "APPS"),
+    ("Web", "PLATFORMS"),
+    ("Backend", "SCALABLE SYSTEMS"),
+    ("AI + Security", "NOW"),
+]
+
+
+def about():
+    W, H = 1200, 590
+    e = lambda t: t.replace("&", "&amp;")
+    # timeline
+    xs = [130 + i * 235 for i in range(len(TIMELINE))]
+    ty = 165
+    tl = [f'<line x1="{xs[0]}" y1="{ty}" x2="{xs[-1]}" y2="{ty}" stroke="#30363d" stroke-width="2"/>',
+          f'<line x1="{xs[0]}" y1="{ty}" x2="{xs[-1]}" y2="{ty}" stroke="url(#prog)" stroke-width="2"/>',
+          f'<circle r="3.5" fill="#9ccfff" filter="url(#g)"><animateMotion dur="5s" repeatCount="indefinite" path="M {xs[0]} {ty} H {xs[-1]}"/>'
+          f'<animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;.08;.9;1"/></circle>']
+    for i, (x, (name, sub)) in enumerate(zip(xs, TIMELINE)):
+        last = i == len(TIMELINE) - 1
+        if last:
+            tl.append(f'<circle cx="{x}" cy="{ty}" r="9" fill="none" stroke="#58a6ff"><animate attributeName="r" values="9;22" dur="2s" repeatCount="indefinite"/>'
+                      f'<animate attributeName="opacity" values=".9;0" dur="2s" repeatCount="indefinite"/></circle>')
+        tl.append(f'<circle cx="{x}" cy="{ty}" r="7" fill="{"#58a6ff" if last else "#0d1117"}" stroke="#58a6ff" stroke-width="2"/>')
+        tl.append(f'<text x="{x}" y="{ty+36}" text-anchor="middle" class="tn{" now" if last else ""}">{e(name)}</text>')
+        tl.append(f'<text x="{x}" y="{ty+54}" text-anchor="middle" class="ts">{e(sub)}</text>')
+    # cards
+    cards = []
+    cw, chh, cy0 = 271, 290, 270
+    for i, (icon, label, title, body, chips) in enumerate(CARDS):
+        x = 40 + i * (cw + 12)
+        g = [f'<g class="card" style="animation-delay:{0.15*i:.2f}s">',
+             f'<rect x="{x}" y="{cy0}" width="{cw}" height="{chh}" rx="12" fill="#161b22" fill-opacity=".7" stroke="#30363d"/>',
+             f'<rect x="{x}" y="{cy0}" width="{cw}" height="2" rx="1" fill="url(#topline)"/>',
+             f'<g transform="translate({x+22},{cy0+22})"><rect width="40" height="40" rx="10" fill="#1f6feb" fill-opacity=".12" stroke="#1f6feb" stroke-opacity=".6"/>'
+             f'<g fill="none" stroke="#58a6ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ICONS[icon]}</g></g>',
+             f'<text x="{x+22}" y="{cy0+92}" class="cl">{label}</text>']
+        for j, t in enumerate(title):
+            g.append(f'<text x="{x+22}" y="{cy0+120+j*24}" class="ct">{e(t)}</text>')
+        for j, t in enumerate(body):
+            g.append(f'<text x="{x+22}" y="{cy0+186+j*19}" class="cb">{e(t)}</text>')
+        # chips with wrapping
+        cx, cyy, maxx = x + 22, cy0 + 236, x + cw - 18
+        for c in chips:
+            w = len(c) * 6.3 + 16
+            if cx + w > maxx:
+                cx, cyy = x + 22, cyy + 26
+            g.append(f'<rect x="{cx:.1f}" y="{cyy}" width="{w:.1f}" height="20" rx="10" fill="#0d1117" stroke="#30363d"/>'
+                     f'<text x="{cx + w/2:.1f}" y="{cyy+13.5}" text-anchor="middle" class="chip">{e(c)}</text>')
+            cx += w + 6
+        g.append("</g>")
+        cards.append("".join(g))
+
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="About Aswin Venkat">
+<style>
+  .hdr {{ font: 700 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #e6edf3; letter-spacing: 3px; }}
+  .meta {{ font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #8b949e; letter-spacing: 1.5px; }}
+  .sec {{ font: 600 10.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #8b949e; letter-spacing: 2px; }}
+  .tn {{ font: 600 15px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #c9d1d9; }}
+  .tn.now {{ fill: #58a6ff; }}
+  .ts {{ font: 500 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #6e7681; letter-spacing: 1.2px; }}
+  .cl {{ font: 600 10.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #58a6ff; letter-spacing: 2px; }}
+  .ct {{ font: 700 20px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #e6edf3; }}
+  .cb {{ font: 400 13.5px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #8b949e; }}
+  .chip {{ font: 600 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #c9d1d9; letter-spacing: .5px; }}
+  .card {{ animation: rise .7s ease-out both; }}
+  @keyframes rise {{ from {{ opacity: 0; transform: translateY(10px) }} to {{ opacity: 1; transform: none }} }}
+  .dot {{ animation: blink 1.4s ease-in-out infinite; }}
+  @keyframes blink {{ 50% {{ opacity: .2 }} }}
+</style>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#0b1626"/></linearGradient>
+  <linearGradient id="prog" x1="0" x2="1"><stop offset="0" stop-color="#1f6feb" stop-opacity=".2"/><stop offset="1" stop-color="#58a6ff"/></linearGradient>
+  <linearGradient id="topline" x1="0" x2="1"><stop offset="0" stop-color="#58a6ff" stop-opacity="0"/><stop offset=".5" stop-color="#58a6ff" stop-opacity=".8"/><stop offset="1" stop-color="#58a6ff" stop-opacity="0"/></linearGradient>
+  <filter id="g" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="{W}" height="{H}" rx="18" fill="url(#bg)"/>
+<rect x="1" y="1" width="{W-2}" height="{H-2}" rx="17" fill="none" stroke="#30363d"/>
+<circle cx="40" cy="42" r="5" fill="#3fb950" class="dot"/>
+<text x="54" y="47" class="hdr">CREW PROFILE · ASWIN VENKAT</text>
+<text x="1160" y="47" class="meta" text-anchor="end">STATUS: BUILDING AUTONOMOUS AGENTS</text>
+<text x="50" y="105" class="sec">TRAJECTORY</text>
+{"".join(tl)}
+{"".join(cards)}
+</svg>
+"""
+    (ASSETS / "about.svg").write_text(svg)
+
+
 if __name__ == "__main__":
     header()
     footer()
+    about()
     print("wrote", ASSETS / "cosmos-header.svg", ASSETS / "cosmos-footer.svg")

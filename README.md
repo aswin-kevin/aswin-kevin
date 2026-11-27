@@ -13,6 +13,12 @@
 
 ## About
 
+<img src="assets/about.svg" width="100%" alt="About: backend engineer building cybersecurity SaaS (ASM, Threat Intel, SAST, DAST, CSPM). Go for scale, Python for the rest. Building autonomous AI agents with LangChain, LangGraph and Deep Agents. Builds FPV freestyle drones from scratch; licensed drone pilot. Journey: embedded → mobile → web → backend → AI + security."/>
+
+<details>
+<summary><b>Read the full story</b></summary>
+<br/>
+
 I started out tinkering with hardware in college, writing code that talked directly to machines. That curiosity grew into mobile apps, then web, then backend systems, and now I'm deep in **AI and cybersecurity**.
 
 Today I build **backend systems for cybersecurity SaaS products**: Attack Surface Monitoring, Threat Intelligence, SAST, DAST and CSPM platforms. **Golang** is my weapon of choice for high-performance, scalable APIs. **Python** is my second language for everything else.
@@ -21,15 +27,7 @@ What excites me most right now is **AI agents**. I build autonomous agents with 
 
 Away from the screen, I build **FPV freestyle drones from scratch**: every component, every wire, every tune. I'm a licensed drone pilot exploring ways to make a real-world impact with it.
 
-```yaml
-role:        Backend Engineer — Cybersecurity SaaS
-platforms:   [Attack Surface Monitoring, Threat Intelligence, SAST, DAST, CSPM]
-languages:   { primary: Go, secondary: Python }
-building:    Autonomous AI agents (LangChain · LangGraph · Deep Agents)
-roots:       Embedded systems → mobile → web → backend → AI
-off_screen:  FPV freestyle drones — built, tuned and flown by hand
-certified:   Licensed drone pilot
-```
+</details>
 
 ## Tech Stack
 
