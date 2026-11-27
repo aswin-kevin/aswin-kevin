@@ -39,19 +39,19 @@
   <g class="row" style="animation-delay:0.12s">
     <text x="50" y="176" class="icon">⌁</text>
     <text x="78" y="162" class="lbl">CONTRIBUTIONS · 1Y</text>
-    <text x="78" y="186" class="val">1,107</text>
+    <text x="78" y="186" class="val">1,108</text>
     <line x1="78" y1="196" x2="300" y2="196" class="rule"/>
   </g>
   <g class="row" style="animation-delay:0.24s">
     <text x="50" y="234" class="icon">◆</text>
     <text x="78" y="220" class="lbl">COMMITS · 1Y</text>
-    <text x="78" y="244" class="val">1,088</text>
+    <text x="78" y="244" class="val">1,089</text>
     <line x1="78" y1="254" x2="300" y2="254" class="rule"/>
   </g>
   <g class="row" style="animation-delay:0.36s">
     <text x="50" y="292" class="icon">⇄</text>
     <text x="78" y="278" class="lbl">PULL REQUESTS</text>
-    <text x="78" y="302" class="val">45</text>
+    <text x="78" y="302" class="val">22</text>
     <line x1="78" y1="312" x2="300" y2="312" class="rule"/>
   </g>
   <g class="row" style="animation-delay:0.48s">
