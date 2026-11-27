@@ -11,7 +11,7 @@ from pathlib import Path
 ASSETS = Path(__file__).resolve().parent.parent / "assets"
 ASSETS.mkdir(exist_ok=True)
 
-STAR_COLORS = ["#ffffff", "#ffffff", "#ffffff", "#cfe8ff", "#ffe9c4", "#e2d6ff"]
+STAR_COLORS = ["#ffffff", "#ffffff", "#ffffff", "#cfe8ff", "#ffe9c4", "#dbeafe"]
 
 
 def starfield(rng, w, h, n, rmin, rmax, cls="tw"):
@@ -46,9 +46,9 @@ def galaxy(rng, arms=2, n=320, rmax=165):
             y = r * math.sin(theta) + rng.gauss(0, spread)
             size = max(0.4, 2.2 - t * 1.7 + rng.uniform(-0.3, 0.3))
             if t < 0.45:
-                c = lerp_color("#fff4d6", "#f0abfc", t / 0.45)
+                c = lerp_color("#fff8e7", "#cbd5e1", t / 0.45)
             else:
-                c = lerp_color("#f0abfc", "#60a5fa", (t - 0.45) / 0.55)
+                c = lerp_color("#cbd5e1", "#60a5fa", (t - 0.45) / 0.55)
             op = max(0.25, 1 - t * 0.6)
             pts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{size:.2f}" fill="{c}" opacity="{op:.2f}"/>')
     # halo dust
@@ -57,7 +57,7 @@ def galaxy(rng, arms=2, n=320, rmax=165):
         r = abs(rng.gauss(0, 70))
         pts.append(
             f'<circle cx="{r*math.cos(a):.1f}" cy="{r*math.sin(a):.1f}" r="{rng.uniform(0.3,1.1):.2f}" '
-            f'fill="#e9d5ff" opacity="{rng.uniform(0.2,0.7):.2f}"/>'
+            f'fill="#dbeafe" opacity="{rng.uniform(0.2,0.7):.2f}"/>'
         )
     return "\n".join(pts)
 
@@ -83,32 +83,32 @@ def header():
   @keyframes drift {{ from {{ transform: translate(0,0) scale(1) }} to {{ transform: translate(30px,-12px) scale(1.08) }} }}
   .blink {{ animation: blink 1.1s steps(1) infinite; }}
   @keyframes blink {{ 50% {{ opacity: 0 }} }}
-  .hud {{ font: 600 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #a5b4fc; letter-spacing: 2px; }}
+  .hud {{ font: 600 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #8b949e; letter-spacing: 2px; }}
   .title {{ font: 800 76px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; letter-spacing: 10px; }}
-  .sub {{ font: 500 19px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #c7d2fe; letter-spacing: 1px; }}
+  .sub {{ font: 500 19px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #c9d1d9; letter-spacing: 1px; }}
 </style>
 <defs>
   <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#03010a"/>
-    <stop offset=".55" stop-color="#0b0628"/>
-    <stop offset="1" stop-color="#140a3a"/>
+    <stop offset="0" stop-color="#04060b"/>
+    <stop offset=".55" stop-color="#0a1120"/>
+    <stop offset="1" stop-color="#0f1b30"/>
   </linearGradient>
-  <radialGradient id="nebA"><stop offset="0" stop-color="#a855f7" stop-opacity=".55"/><stop offset="1" stop-color="#a855f7" stop-opacity="0"/></radialGradient>
-  <radialGradient id="nebB"><stop offset="0" stop-color="#06b6d4" stop-opacity=".40"/><stop offset="1" stop-color="#06b6d4" stop-opacity="0"/></radialGradient>
-  <radialGradient id="nebC"><stop offset="0" stop-color="#ec4899" stop-opacity=".35"/><stop offset="1" stop-color="#ec4899" stop-opacity="0"/></radialGradient>
-  <radialGradient id="core"><stop offset="0" stop-color="#fffbea"/><stop offset=".25" stop-color="#fde68a" stop-opacity=".8"/><stop offset="1" stop-color="#c084fc" stop-opacity="0"/></radialGradient>
+  <radialGradient id="nebA"><stop offset="0" stop-color="#1d4ed8" stop-opacity=".30"/><stop offset="1" stop-color="#1d4ed8" stop-opacity="0"/></radialGradient>
+  <radialGradient id="nebB"><stop offset="0" stop-color="#0e7490" stop-opacity=".28"/><stop offset="1" stop-color="#0e7490" stop-opacity="0"/></radialGradient>
+  <radialGradient id="nebC"><stop offset="0" stop-color="#334155" stop-opacity=".35"/><stop offset="1" stop-color="#334155" stop-opacity="0"/></radialGradient>
+  <radialGradient id="core"><stop offset="0" stop-color="#fffbea"/><stop offset=".25" stop-color="#fde68a" stop-opacity=".8"/><stop offset="1" stop-color="#60a5fa" stop-opacity="0"/></radialGradient>
   <radialGradient id="planet" cx=".35" cy=".3" r=".8">
-    <stop offset="0" stop-color="#c4b5fd"/><stop offset=".45" stop-color="#7c3aed"/><stop offset="1" stop-color="#1e1048"/>
+    <stop offset="0" stop-color="#cbd5e1"/><stop offset=".45" stop-color="#3b5b8c"/><stop offset="1" stop-color="#0b1426"/>
   </radialGradient>
   <radialGradient id="moon" cx=".35" cy=".35"><stop offset="0" stop-color="#f8fafc"/><stop offset="1" stop-color="#64748b"/></radialGradient>
   <linearGradient id="ring" x1="0" x2="1"><stop offset="0" stop-color="#67e8f9" stop-opacity=".1"/><stop offset=".5" stop-color="#e0f2fe" stop-opacity=".9"/><stop offset="1" stop-color="#67e8f9" stop-opacity=".1"/></linearGradient>
   <linearGradient id="tail" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
   <linearGradient id="txt" x1="0" x2="1" gradientUnits="objectBoundingBox">
-    <stop offset="0" stop-color="#67e8f9"/><stop offset=".35" stop-color="#e9d5ff"/><stop offset=".65" stop-color="#f0abfc"/><stop offset="1" stop-color="#67e8f9"/>
+    <stop offset="0" stop-color="#ffffff"/><stop offset=".35" stop-color="#e6edf3"/><stop offset=".65" stop-color="#9ccfff"/><stop offset="1" stop-color="#ffffff"/>
     <animateTransform attributeName="gradientTransform" type="translate" values="-1 0;1 0" dur="8s" repeatCount="indefinite"/>
   </linearGradient>
   <filter id="glow" x="-20%" y="-50%" width="140%" height="200%">
-    <feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
   </filter>
   <filter id="soft"><feGaussianBlur stdDeviation="1.2"/></filter>
 </defs>
@@ -139,10 +139,10 @@ def header():
 <g transform="translate(150,318) rotate(-14)">
   <path d="M -98 0 A 98 19 0 0 1 98 0" fill="none" stroke="url(#ring)" stroke-width="5"/>
   <circle r="52" fill="url(#planet)"/>
-  <path d="M -40 -14 Q 0 -6 40 -16" stroke="#ddd6fe" stroke-opacity=".25" stroke-width="5" fill="none"/>
-  <path d="M -48 10 Q 0 20 46 8" stroke="#ddd6fe" stroke-opacity=".18" stroke-width="4" fill="none"/>
+  <path d="M -40 -14 Q 0 -6 40 -16" stroke="#e2e8f0" stroke-opacity=".25" stroke-width="5" fill="none"/>
+  <path d="M -48 10 Q 0 20 46 8" stroke="#e2e8f0" stroke-opacity=".18" stroke-width="4" fill="none"/>
   <path d="M -98 0 A 98 19 0 0 0 98 0" fill="none" stroke="url(#ring)" stroke-width="5"/>
-  <ellipse rx="150" ry="36" fill="none" stroke="#a5b4fc" stroke-opacity=".18" stroke-dasharray="3 6"/>
+  <ellipse rx="150" ry="36" fill="none" stroke="#8b949e" stroke-opacity=".22" stroke-dasharray="3 6"/>
   <circle r="8" fill="url(#moon)">
     <animateMotion dur="14s" repeatCount="indefinite" path="M -150 0 A 150 36 0 0 0 150 0 A 150 36 0 0 0 -150 0"/>
     <animate attributeName="opacity" dur="14s" repeatCount="indefinite" keyTimes="0;0.68;0.70;0.80;0.82;1" values="1;1;0;0;1;1"/>
@@ -158,14 +158,15 @@ def header():
 <text x="34" y="40" class="hud">◉ INCOMING TRANSMISSION</text>
 <text x="34" y="60" class="hud" opacity=".6">RA 05h 35m 17s · DEC −05° 23′ 28″</text>
 <text x="1166" y="400" class="hud" text-anchor="end" opacity=".7">AD ASTRA PER ASPERA</text>
-<g stroke="#a5b4fc" stroke-opacity=".45" fill="none" stroke-width="1.5">
+<g stroke="#8b949e" stroke-opacity=".5" fill="none" stroke-width="1.5">
   <path d="M 14 34 V 14 H 34"/><path d="M 1186 34 V 14 H 1166"/>
   <path d="M 14 386 V 406 H 34"/><path d="M 1186 386 V 406 H 1166"/>
 </g>
 
 <!-- title -->
 <text x="548" y="205" text-anchor="middle" class="title" fill="url(#txt)" filter="url(#glow)">ASWIN VENKAT</text>
-<text x="548" y="252" text-anchor="middle" class="sub">&gt; cybersecurity · ai agents · web &amp; mobile · robotics<tspan class="blink" fill="#67e8f9">▌</tspan></text>
+<text x="548" y="252" text-anchor="middle" class="sub">AI Agents · Golang · Embedded Systems · Licensed Drone Pilot<tspan class="blink" fill="#58a6ff">▌</tspan></text>
+<text x="548" y="118" text-anchor="middle" class="hud" fill="#58a6ff" style="fill:#58a6ff;letter-spacing:6px">BACKEND ENGINEER · CYBERSECURITY SAAS</text>
 </svg>
 '''
     (ASSETS / "cosmos-header.svg").write_text(svg)
@@ -180,12 +181,12 @@ def footer():
   @keyframes twinkle {{ 0%,100% {{ opacity: .15 }} 50% {{ opacity: 1 }} }}
   .atmo {{ animation: pulse 6s ease-in-out infinite; }}
   @keyframes pulse {{ 0%,100% {{ opacity: .65 }} 50% {{ opacity: 1 }} }}
-  .msg {{ font: 500 17px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #e0e7ff; letter-spacing: 2px; }}
+  .msg {{ font: 500 17px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #c9d1d9; letter-spacing: 2px; }}
 </style>
 <defs>
-  <linearGradient id="fsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#03010a"/><stop offset="1" stop-color="#0b0628"/></linearGradient>
-  <radialGradient id="atm" cx=".5" cy="1" r=".75"><stop offset=".72" stop-color="#22d3ee" stop-opacity=".0"/><stop offset=".86" stop-color="#22d3ee" stop-opacity=".55"/><stop offset=".93" stop-color="#a855f7" stop-opacity=".25"/><stop offset="1" stop-color="#a855f7" stop-opacity="0"/></radialGradient>
-  <radialGradient id="earth" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#1e3a8a"/><stop offset=".4" stop-color="#0b1440"/><stop offset="1" stop-color="#03010a"/></radialGradient>
+  <linearGradient id="fsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#04060b"/><stop offset="1" stop-color="#0a1120"/></linearGradient>
+  <radialGradient id="atm" cx=".5" cy="1" r=".75"><stop offset=".72" stop-color="#22d3ee" stop-opacity=".0"/><stop offset=".86" stop-color="#22d3ee" stop-opacity=".55"/><stop offset=".93" stop-color="#1d4ed8" stop-opacity=".25"/><stop offset="1" stop-color="#1d4ed8" stop-opacity="0"/></radialGradient>
+  <radialGradient id="earth" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#1e3a8a"/><stop offset=".4" stop-color="#0b1440"/><stop offset="1" stop-color="#04060b"/></radialGradient>
   <radialGradient id="sun"><stop offset="0" stop-color="#ffffff"/><stop offset=".2" stop-color="#fef3c7"/><stop offset="1" stop-color="#fef3c7" stop-opacity="0"/></radialGradient>
 </defs>
 <rect width="{W}" height="{H}" rx="18" fill="url(#fsky)"/>

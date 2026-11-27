@@ -73,7 +73,7 @@ def render(u):
         for e in r["languages"]["edges"]:
             n = e["node"]["name"]
             langs[n] = langs.get(n, 0) + e["size"]
-            colors[n] = e["node"]["color"] or "#a5b4fc"
+            colors[n] = e["node"]["color"] or "#8b949e"
     total = sum(langs.values()) or 1
     top = [kv for kv in sorted(langs.items(), key=lambda kv: -kv[1]) if kv[1] / total >= 0.001][:6]
     created = datetime.fromisoformat(u["createdAt"].replace("Z", "+00:00"))
@@ -88,7 +88,7 @@ def render(u):
         ("!", "ISSUES OPENED", fmt(u["issues"]["totalCount"])),
         ("◎", "PUBLIC REPOS", fmt(u["repositories"]["totalCount"])),
         ("⑂", "FORKS", fmt(forks)),
-        ("☄", "CREW FOLLOWING", fmt(u["followers"]["totalCount"])),
+        ("☄", "FOLLOWERS", fmt(u["followers"]["totalCount"])),
     ]
 
     W, H = 1200, 380
@@ -135,15 +135,15 @@ def render(u):
     stamp = now.strftime("%Y-%m-%d %H:%M UTC")
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Mission control: GitHub stats for {LOGIN}">
 <style>
-  .hdr {{ font: 700 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #67e8f9; letter-spacing: 3px; }}
-  .meta {{ font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #818cf8; letter-spacing: 1.5px; }}
-  .lbl {{ font: 600 10.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #a5b4fc; letter-spacing: 2px; }}
-  .val {{ font: 700 24px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #f5f3ff; }}
-  .icon {{ font: 700 20px 'Segoe UI Symbol', 'Apple Symbols', sans-serif; fill: #c084fc; }}
-  .lang {{ font: 600 13px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #e0e7ff; }}
+  .hdr {{ font: 700 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #e6edf3; letter-spacing: 3px; }}
+  .meta {{ font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #8b949e; letter-spacing: 1.5px; }}
+  .lbl {{ font: 600 10.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #8b949e; letter-spacing: 2px; }}
+  .val {{ font: 700 24px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #e6edf3; }}
+  .icon {{ font: 700 20px 'Segoe UI Symbol', 'Apple Symbols', sans-serif; fill: #58a6ff; }}
+  .lang {{ font: 600 13px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #e6edf3; }}
   .pct {{ font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #94a3b8; }}
-  .rule {{ stroke: #6366f1; stroke-opacity: .35; stroke-dasharray: 2 4; }}
-  .orbit {{ fill: none; stroke: #a5b4fc; stroke-opacity: .22; }}
+  .rule {{ stroke: #30363d; stroke-opacity: 1; stroke-dasharray: 2 4; }}
+  .orbit {{ fill: none; stroke: #8b949e; stroke-opacity: .25; }}
   .row {{ animation: boot .6s ease-out both; }}
   @keyframes boot {{ from {{ opacity: 0; transform: translateX(-12px) }} to {{ opacity: 1; transform: none }} }}
   .sweep {{ transform-origin: {cx}px {cy}px; animation: spin 6s linear infinite; }}
@@ -152,13 +152,13 @@ def render(u):
   @keyframes blink {{ 50% {{ opacity: .2 }} }}
 </style>
 <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05020f"/><stop offset="1" stop-color="#120a33"/></linearGradient>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#0b1626"/></linearGradient>
   <radialGradient id="star"><stop offset="0" stop-color="#fffbea"/><stop offset=".4" stop-color="#fbbf24"/><stop offset="1" stop-color="#f97316" stop-opacity="0"/></radialGradient>
-  <linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#67e8f9" stop-opacity="0"/><stop offset="1" stop-color="#67e8f9" stop-opacity=".35"/></linearGradient>
+  <linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#58a6ff" stop-opacity="0"/><stop offset="1" stop-color="#58a6ff" stop-opacity=".3"/></linearGradient>
   <filter id="pglow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
 <rect width="{W}" height="{H}" rx="18" fill="url(#bg)"/>
-<rect x="1" y="1" width="{W-2}" height="{H-2}" rx="17" fill="none" stroke="#6366f1" stroke-opacity=".35"/>
+<rect x="1" y="1" width="{W-2}" height="{H-2}" rx="17" fill="none" stroke="#30363d"/>
 <line x1="640" y1="70" x2="640" y2="345" class="rule"/>
 
 <circle cx="40" cy="42" r="5" fill="#22c55e" class="dot"/>
