@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" width="1200" height="380" role="img" aria-label="Mission control: GitHub stats for aswin-kevin">
+<style>
+  .hdr { font: 700 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #67e8f9; letter-spacing: 3px; }
+  .meta { font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #818cf8; letter-spacing: 1.5px; }
+  .lbl { font: 600 10.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #a5b4fc; letter-spacing: 2px; }
+  .val { font: 700 24px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #f5f3ff; }
+  .icon { font: 700 20px 'Segoe UI Symbol', 'Apple Symbols', sans-serif; fill: #c084fc; }
+  .lang { font: 600 13px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #e0e7ff; }
+  .pct { font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #94a3b8; }
+  .rule { stroke: #6366f1; stroke-opacity: .35; stroke-dasharray: 2 4; }
+  .orbit { fill: none; stroke: #a5b4fc; stroke-opacity: .22; }
+  .row { animation: boot .6s ease-out both; }
+  @keyframes boot { from { opacity: 0; transform: translateX(-12px) } to { opacity: 1; transform: none } }
+  .sweep { transform-origin: 870px 205px; animation: spin 6s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg) } }
+  .dot { animation: blink 1.4s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: .2 } }
+</style>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05020f"/><stop offset="1" stop-color="#120a33"/></linearGradient>
+  <radialGradient id="star"><stop offset="0" stop-color="#fffbea"/><stop offset=".4" stop-color="#fbbf24"/><stop offset="1" stop-color="#f97316" stop-opacity="0"/></radialGradient>
+  <linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#67e8f9" stop-opacity="0"/><stop offset="1" stop-color="#67e8f9" stop-opacity=".35"/></linearGradient>
+  <filter id="pglow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1200" height="380" rx="18" fill="url(#bg)"/>
+<rect x="1" y="1" width="1198" height="378" rx="17" fill="none" stroke="#6366f1" stroke-opacity=".35"/>
+<line x1="640" y1="70" x2="640" y2="345" class="rule"/>
+
+<circle cx="40" cy="42" r="5" fill="#22c55e" class="dot"/>
+<text x="54" y="47" class="hdr">MISSION CONTROL · TELEMETRY</text>
+<text x="1160" y="47" class="meta" text-anchor="end">LAST SYNC 2026-11-27 01:49 UTC · 8.9 YEARS IN ORBIT</text>
+
+  <g class="row" style="animation-delay:0.00s">
+    <text x="50" y="118" class="icon">★</text>
+    <text x="78" y="104" class="lbl">STARS COLLECTED</text>
+    <text x="78" y="128" class="val">8</text>
+    <line x1="78" y1="138" x2="300" y2="138" class="rule"/>
+  </g>
+  <g class="row" style="animation-delay:0.12s">
+    <text x="50" y="176" class="icon">⌁</text>
+    <text x="78" y="162" class="lbl">CONTRIBUTIONS · 1Y</text>
+    <text x="78" y="186" class="val">1,106</text>
+    <line x1="78" y1="196" x2="300" y2="196" class="rule"/>
+  </g>
+  <g class="row" style="animation-delay:0.24s">
+    <text x="50" y="234" class="icon">◆</text>
+    <text x="78" y="220" class="lbl">COMMITS · 1Y</text>
+    <text x="78" y="244" class="val">1,087</text>
+    <line x1="78" y1="254" x2="300" y2="254" class="rule"/>
+  </g>
+  <g class="row" style="animation-delay:0.36s">
+    <text x="50" y="292" class="icon">⇄</text>
+    <text x="78" y="278" class="lbl">PULL REQUESTS</text>
+    <text x="78" y="302" class="val">45</text>
+    <line x1="78" y1="312" x2="300" y2="312" class="rule"/>
+  </g>
+  <g class="row" style="animation-delay:0.48s">
+    <text x="340" y="118" class="icon">!</text>
+    <text x="368" y="104" class="lbl">ISSUES OPENED</text>
+    <text x="368" y="128" class="val">2</text>
+    <line x1="368" y1="138" x2="590" y2="138" class="rule"/>
+  </g>
+  <g class="row" style="animation-delay:0.60s">
+    <text x="340" y="176" class="icon">◎</text>
+    <text x="368" y="162" class="lbl">PUBLIC REPOS</text>
+    <text x="368" y="186" class="val">15</text>
+    <line x1="368" y1="196" x2="590" y2="196" class="rule"/>
+  </g>
+  <g class="row" style="animation-delay:0.72s">
+    <text x="340" y="234" class="icon">⑂</text>
+    <text x="368" y="220" class="lbl">FORKS</text>
+    <text x="368" y="244" class="val">4</text>
+    <line x1="368" y1="254" x2="590" y2="254" class="rule"/>
+  </g>
+  <g class="row" style="animation-delay:0.84s">
+    <text x="340" y="292" class="icon">☄</text>
+    <text x="368" y="278" class="lbl">CREW FOLLOWING</text>
+    <text x="368" y="302" class="val">1</text>
+    <line x1="368" y1="312" x2="590" y2="312" class="rule"/>
+  </g>
+
+<text x="680" y="100" class="lbl">LANGUAGE ORBITS</text>
+<path class="sweep" d="M 870 205 L 1020 181 A 152 152 0 0 1 1020 229 Z" fill="url(#beam)" opacity=".5"/>
+<ellipse cx="870" cy="205" rx="42" ry="16.0" class="orbit"/><circle r="11.5" fill="#00ADD8" filter="url(#pglow)"><animateMotion dur="9s" repeatCount="indefinite" path="M 912.0 205.0 A 42 16.0 0 1 1 828.0 205.0 A 42 16.0 0 1 1 912.0 205.0"/></circle><ellipse cx="870" cy="205" rx="62" ry="24.0" class="orbit"/><circle r="7.3" fill="#3572A5" filter="url(#pglow)"><animateMotion dur="14s" repeatCount="indefinite" path="M 903.8 225.1 A 62 24.0 0 1 1 836.2 184.9 A 62 24.0 0 1 1 903.8 225.1"/></circle><ellipse cx="870" cy="205" rx="82" ry="32.0" class="orbit"/><circle r="5.2" fill="#DA5B0B" filter="url(#pglow)"><animateMotion dur="19s" repeatCount="indefinite" path="M 836.6 234.2 A 82 32.0 0 1 1 903.4 175.8 A 82 32.0 0 1 1 836.6 234.2"/></circle><ellipse cx="870" cy="205" rx="102" ry="40.0" class="orbit"/><circle r="3.9" fill="#3178c6" filter="url(#pglow)"><animateMotion dur="24s" repeatCount="indefinite" path="M 769.3 211.3 A 102 40.0 0 1 1 970.7 198.7 A 102 40.0 0 1 1 769.3 211.3"/></circle><ellipse cx="870" cy="205" rx="122" ry="48.0" class="orbit"/><circle r="3.5" fill="#f1e05a" filter="url(#pglow)"><animateMotion dur="29s" repeatCount="indefinite" path="M 788.4 169.3 A 122 48.0 0 1 1 951.6 240.7 A 122 48.0 0 1 1 788.4 169.3"/></circle>
+<circle cx="870" cy="205" r="26" fill="url(#star)"/>
+<circle cx="870" cy="205" r="9" fill="#fffbea"/>
+<circle cx="1032" cy="108" r="5" fill="#00ADD8"/><text x="1044" y="112" class="lang">Go</text><text x="1044" y="126" class="pct">58.5%</text><circle cx="1032" cy="142" r="5" fill="#3572A5"/><text x="1044" y="146" class="lang">Python</text><text x="1044" y="160" class="pct">26.3%</text><circle cx="1032" cy="176" r="5" fill="#DA5B0B"/><text x="1044" y="180" class="lang">Jupyter Notebook</text><text x="1044" y="194" class="pct">12.0%</text><circle cx="1032" cy="210" r="5" fill="#3178c6"/><text x="1044" y="214" class="lang">TypeScript</text><text x="1044" y="228" class="pct">3.0%</text><circle cx="1032" cy="244" r="5" fill="#f1e05a"/><text x="1044" y="248" class="lang">JavaScript</text><text x="1044" y="262" class="pct">0.1%</text>
+</svg>
