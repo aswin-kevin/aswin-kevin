@@ -46,8 +46,7 @@ Away from the screen, I build **FPV freestyle drones from scratch**: every compo
 <br/><br/>
 
 **Embedded & Drones**<br/><br/>
-<img src="assets/badges/skills-embedded.svg" alt="Embedded stack"/>
-<img src="assets/badges/betaflight.svg" alt="Betaflight FPV" height="48"/>
+<img src="assets/badges/skills-embedded.svg" alt="C, C++, Arduino, Raspberry Pi, Betaflight"/>
 
 </div>
 
