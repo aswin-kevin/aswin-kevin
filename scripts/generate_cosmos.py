@@ -169,7 +169,7 @@ def header():
 <text x="548" y="118" text-anchor="middle" class="hud" fill="#58a6ff" style="fill:#58a6ff;letter-spacing:6px">BACKEND ENGINEER · CYBERSECURITY SAAS</text>
 </svg>
 '''
-    (ASSETS / "cosmos-header.svg").write_text(svg)
+    (ASSETS / "cosmos-header.svg").write_text(svg, encoding="utf-8")
 
 
 def footer():
@@ -200,7 +200,7 @@ def footer():
 <text x="600" y="70" text-anchor="middle" class="msg">THANKS FOR VISITING THIS CORNER OF THE UNIVERSE ✦</text>
 </svg>
 '''
-    (ASSETS / "cosmos-footer.svg").write_text(svg)
+    (ASSETS / "cosmos-footer.svg").write_text(svg, encoding="utf-8")
 
 
 ICONS = {
@@ -298,8 +298,8 @@ def about():
   .ct {{ font: 700 20px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #e6edf3; }}
   .cb {{ font: 400 13.5px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #8b949e; }}
   .chip {{ font: 600 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #c9d1d9; letter-spacing: .5px; }}
-  .card {{ animation: rise .7s ease-out both; }}
-  @keyframes rise {{ from {{ opacity: 0; transform: translateY(10px) }} to {{ opacity: 1; transform: none }} }}
+  .card {{ animation: rise .7s ease-out backwards; }}
+  @keyframes rise {{ from {{ transform: translateY(10px) }} to {{ transform: none }} }}
   .dot {{ animation: blink 1.4s ease-in-out infinite; }}
   @keyframes blink {{ 50% {{ opacity: .2 }} }}
 </style>
@@ -319,11 +319,81 @@ def about():
 {"".join(cards)}
 </svg>
 """
-    (ASSETS / "about.svg").write_text(svg)
+    (ASSETS / "about.svg").write_text(svg, encoding="utf-8")
+
+
+CONNECT = [
+    ("graph", "AI Agents", "Building or exploring", "autonomous agents"),
+    ("drone", "FPV Drones", "Building from scratch &", "freestyle flying"),
+    ("shield", "Cybersecurity", "Security product", "development"),
+    ("terminal", "Go & DevOps", "Scalable backends", "and infrastructure"),
+]
+EMAIL = "aswinvenkat60@gmail.com"
+
+
+def connect():
+    W, H = 1200, 330
+    tw, th, ty = 271, 120, 92
+    tiles = []
+    for i, (icon, title, l1, l2) in enumerate(CONNECT):
+        x = 40 + i * (tw + 12)
+        tiles.append(
+            f'<g><rect x="{x}" y="{ty}" width="{tw}" height="{th}" rx="12" fill="#161b22" fill-opacity=".7" stroke="#30363d"/>'
+            f'<g transform="translate({x+20},{ty+20})"><rect width="40" height="40" rx="10" fill="#1f6feb" fill-opacity=".12" stroke="#1f6feb" stroke-opacity=".6"/>'
+            f'<g fill="none" stroke="#58a6ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{ICONS[icon]}</g></g>'
+            f'<text x="{x+74}" y="{ty+38}" class="tt">{title.replace("&", "&amp;")}</text>'
+            f'<text x="{x+74}" y="{ty+56}" class="tl">0{i+1}</text>'
+            f'<text x="{x+20}" y="{ty+88}" class="tb">{l1.replace("&", "&amp;")}</text>'
+            f'<text x="{x+20}" y="{ty+106}" class="tb">{l2.replace("&", "&amp;")}</text></g>'
+        )
+    cta_w, cta_h = 420, 52
+    cx, cy = (W - cta_w) / 2, 240
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Let's connect if you're into AI agents, FPV drones, cybersecurity, or Go and DevOps. Email {EMAIL}">
+<style>
+  .hdr {{ font: 700 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #e6edf3; letter-spacing: 3px; }}
+  .meta {{ font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #8b949e; letter-spacing: 1.5px; }}
+  .tt {{ font: 700 17px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #e6edf3; }}
+  .tl {{ font: 600 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #58a6ff; letter-spacing: 2px; }}
+  .tb {{ font: 400 13.5px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #8b949e; }}
+  .cta {{ font: 600 16px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #f0f6fc; letter-spacing: .5px; }}
+  .dot {{ animation: blink 1.4s ease-in-out infinite; }}
+  @keyframes blink {{ 50% {{ opacity: .2 }} }}
+  .arrow {{ animation: nudge 1.6s ease-in-out infinite; }}
+  @keyframes nudge {{ 50% {{ transform: translateX(5px) }} }}
+</style>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#0b1626"/></linearGradient>
+  <linearGradient id="ctabg" x1="0" x2="1"><stop offset="0" stop-color="#1158c7"/><stop offset="1" stop-color="#1f6feb"/></linearGradient>
+  <linearGradient id="shine" x1="0" x2="1">
+    <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+  </linearGradient>
+  <clipPath id="ctaclip"><rect x="{cx}" y="{cy}" width="{cta_w}" height="{cta_h}" rx="26"/></clipPath>
+</defs>
+<rect width="{W}" height="{H}" rx="18" fill="url(#bg)"/>
+<rect x="1" y="1" width="{W-2}" height="{H-2}" rx="17" fill="none" stroke="#30363d"/>
+<circle cx="40" cy="42" r="5" fill="#3fb950" class="dot"/>
+<text x="54" y="47" class="hdr">OPEN CHANNEL · LET'S CONNECT</text>
+<text x="1160" y="47" class="meta" text-anchor="end">IF YOU'RE INTO ANY OF THESE</text>
+{"".join(tiles)}
+<rect x="{cx}" y="{cy}" width="{cta_w}" height="{cta_h}" rx="26" fill="url(#ctabg)"/>
+<g clip-path="url(#ctaclip)">
+  <rect x="{cx - 160}" y="{cy}" width="140" height="{cta_h}" fill="url(#shine)">
+    <animate attributeName="x" values="{cx - 160};{cx + cta_w + 20};{cx + cta_w + 20}" keyTimes="0;.45;1" dur="4s" repeatCount="indefinite"/>
+  </rect>
+</g>
+<g fill="none" stroke="#f0f6fc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="translate({cx + 30},{cy + 17})">
+  <rect width="24" height="18" rx="3"/><path d="M 1 2 L 12 10 L 23 2"/>
+</g>
+<text x="{cx + 66}" y="{cy + 32}" class="cta">{EMAIL}</text>
+<g class="arrow"><path d="M {cx + cta_w - 46} {cy + 26} H {cx + cta_w - 28} M {cx + cta_w - 34} {cy + 20} L {cx + cta_w - 28} {cy + 26} L {cx + cta_w - 34} {cy + 32}" fill="none" stroke="#f0f6fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>
+"""
+    (ASSETS / "connect.svg").write_text(svg, encoding="utf-8")
 
 
 if __name__ == "__main__":
     header()
     footer()
     about()
+    connect()
     print("wrote", ASSETS / "cosmos-header.svg", ASSETS / "cosmos-footer.svg")

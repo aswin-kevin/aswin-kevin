@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 330" width="1200" height="330" role="img" aria-label="Let's connect if you're into AI agents, FPV drones, cybersecurity, or Go and DevOps. Email aswinvenkat60@gmail.com">
+<style>
+  .hdr { font: 700 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #e6edf3; letter-spacing: 3px; }
+  .meta { font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #8b949e; letter-spacing: 1.5px; }
+  .tt { font: 700 17px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #e6edf3; }
+  .tl { font: 600 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #58a6ff; letter-spacing: 2px; }
+  .tb { font: 400 13.5px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #8b949e; }
+  .cta { font: 600 16px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #f0f6fc; letter-spacing: .5px; }
+  .dot { animation: blink 1.4s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: .2 } }
+  .arrow { animation: nudge 1.6s ease-in-out infinite; }
+  @keyframes nudge { 50% { transform: translateX(5px) } }
+</style>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#0b1626"/></linearGradient>
+  <linearGradient id="ctabg" x1="0" x2="1"><stop offset="0" stop-color="#1158c7"/><stop offset="1" stop-color="#1f6feb"/></linearGradient>
+  <linearGradient id="shine" x1="0" x2="1">
+    <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+  </linearGradient>
+  <clipPath id="ctaclip"><rect x="390.0" y="240" width="420" height="52" rx="26"/></clipPath>
+</defs>
+<rect width="1200" height="330" rx="18" fill="url(#bg)"/>
+<rect x="1" y="1" width="1198" height="328" rx="17" fill="none" stroke="#30363d"/>
+<circle cx="40" cy="42" r="5" fill="#3fb950" class="dot"/>
+<text x="54" y="47" class="hdr">OPEN CHANNEL · LET'S CONNECT</text>
+<text x="1160" y="47" class="meta" text-anchor="end">IF YOU'RE INTO ANY OF THESE</text>
+<g><rect x="40" y="92" width="271" height="120" rx="12" fill="#161b22" fill-opacity=".7" stroke="#30363d"/><g transform="translate(60,112)"><rect width="40" height="40" rx="10" fill="#1f6feb" fill-opacity=".12" stroke="#1f6feb" stroke-opacity=".6"/><g fill="none" stroke="#58a6ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11 L20 21 M20 21 L11 27 M20 21 L29 27 M11 27 L29 27"/><circle cx="20" cy="11" r="2.8" fill="#0d1117"/><circle cx="20" cy="21" r="2.8" fill="#58a6ff"/><circle cx="11" cy="27" r="2.8" fill="#0d1117"/><circle cx="29" cy="27" r="2.8" fill="#0d1117"/></g></g><text x="114" y="130" class="tt">AI Agents</text><text x="114" y="148" class="tl">01</text><text x="60" y="180" class="tb">Building or exploring</text><text x="60" y="198" class="tb">autonomous agents</text></g><g><rect x="323" y="92" width="271" height="120" rx="12" fill="#161b22" fill-opacity=".7" stroke="#30363d"/><g transform="translate(343,112)"><rect width="40" height="40" rx="10" fill="#1f6feb" fill-opacity=".12" stroke="#1f6feb" stroke-opacity=".6"/><g fill="none" stroke="#58a6ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 13 L27 27 M27 13 L13 27"/><rect x="16.5" y="16.5" width="7" height="7" rx="2" fill="#0d1117"/><ellipse cx="12" cy="12" rx="5" ry="1.3"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.4s" repeatCount="indefinite"/></ellipse><ellipse cx="28" cy="12" rx="5" ry="1.3"><animateTransform attributeName="transform" type="rotate" from="0 28 12" to="360 28 12" dur="0.5s" repeatCount="indefinite"/></ellipse><ellipse cx="12" cy="28" rx="5" ry="1.3"><animateTransform attributeName="transform" type="rotate" from="0 12 28" to="360 12 28" dur="0.6s" repeatCount="indefinite"/></ellipse><ellipse cx="28" cy="28" rx="5" ry="1.3"><animateTransform attributeName="transform" type="rotate" from="0 28 28" to="360 28 28" dur="0.7s" repeatCount="indefinite"/></ellipse></g></g><text x="397" y="130" class="tt">FPV Drones</text><text x="397" y="148" class="tl">02</text><text x="343" y="180" class="tb">Building from scratch &amp;</text><text x="343" y="198" class="tb">freestyle flying</text></g><g><rect x="606" y="92" width="271" height="120" rx="12" fill="#161b22" fill-opacity=".7" stroke="#30363d"/><g transform="translate(626,112)"><rect width="40" height="40" rx="10" fill="#1f6feb" fill-opacity=".12" stroke="#1f6feb" stroke-opacity=".6"/><g fill="none" stroke="#58a6ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8 L30 12 V20 C30 26 25.5 30.5 20 32 C14.5 30.5 10 26 10 20 V12 Z"/><path d="M15.5 20 L19 23.5 L25 16.5"/></g></g><text x="680" y="130" class="tt">Cybersecurity</text><text x="680" y="148" class="tl">03</text><text x="626" y="180" class="tb">Security product</text><text x="626" y="198" class="tb">development</text></g><g><rect x="889" y="92" width="271" height="120" rx="12" fill="#161b22" fill-opacity=".7" stroke="#30363d"/><g transform="translate(909,112)"><rect width="40" height="40" rx="10" fill="#1f6feb" fill-opacity=".12" stroke="#1f6feb" stroke-opacity=".6"/><g fill="none" stroke="#58a6ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="11" width="24" height="18" rx="3"/><path d="M12.5 17 L16 20 L12.5 23"/><path d="M18.5 23 H26"/></g></g><text x="963" y="130" class="tt">Go &amp; DevOps</text><text x="963" y="148" class="tl">04</text><text x="909" y="180" class="tb">Scalable backends</text><text x="909" y="198" class="tb">and infrastructure</text></g>
+<rect x="390.0" y="240" width="420" height="52" rx="26" fill="url(#ctabg)"/>
+<g clip-path="url(#ctaclip)">
+  <rect x="230.0" y="240" width="140" height="52" fill="url(#shine)">
+    <animate attributeName="x" values="230.0;830.0;830.0" keyTimes="0;.45;1" dur="4s" repeatCount="indefinite"/>
+  </rect>
+</g>
+<g fill="none" stroke="#f0f6fc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="translate(420.0,257)">
+  <rect width="24" height="18" rx="3"/><path d="M 1 2 L 12 10 L 23 2"/>
+</g>
+<text x="456.0" y="272" class="cta">aswinvenkat60@gmail.com</text>
+<g class="arrow"><path d="M 764.0 266 H 782.0 M 776.0 260 L 782.0 266 L 776.0 272" fill="none" stroke="#f0f6fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

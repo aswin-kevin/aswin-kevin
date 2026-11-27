@@ -8,6 +8,7 @@ Stdlib only, so the workflow needs no pip install.
 import json
 import math
 import os
+import re
 import urllib.request
 from datetime import datetime, timezone
 from html import escape
@@ -18,7 +19,7 @@ TOKEN = os.environ["GITHUB_TOKEN"]
 OUT = Path(__file__).resolve().parent.parent / "assets" / "mission-control.svg"
 
 QUERY = """
-query($login: String!) {
+query($login: String!, $after: String) {
   user(login: $login) {
     createdAt
     followers { totalCount }
@@ -26,12 +27,12 @@ query($login: String!) {
     issues { totalCount }
     contributionsCollection {
       totalCommitContributions
-      restrictedContributionsCount
       contributionCalendar { totalContributions }
     }
-    repositories(ownerAffiliations: OWNER, isFork: false, privacy: PUBLIC, first: 100,
+    repositories(ownerAffiliations: OWNER, isFork: false, privacy: PUBLIC, first: 100, after: $after,
                  orderBy: {field: STARGAZERS, direction: DESC}) {
       totalCount
+      pageInfo { hasNextPage endCursor }
       nodes {
         stargazerCount
         forkCount
@@ -45,17 +46,27 @@ query($login: String!) {
 """
 
 
-def fetch():
+def query(after=None):
     req = urllib.request.Request(
         "https://api.github.com/graphql",
-        data=json.dumps({"query": QUERY, "variables": {"login": LOGIN}}).encode(),
+        data=json.dumps({"query": QUERY, "variables": {"login": LOGIN, "after": after}}).encode(),
         headers={"Authorization": f"bearer {TOKEN}", "User-Agent": "cosmos-readme"},
     )
     with urllib.request.urlopen(req, timeout=30) as r:
         body = json.load(r)
-    if "errors" in body:
-        raise SystemExit(f"GraphQL errors: {body['errors']}")
+    if body.get("errors") or not (body.get("data") or {}).get("user"):
+        raise SystemExit(f"GraphQL error for user {LOGIN!r}: {body.get('errors')}")
     return body["data"]["user"]
+
+
+def fetch():
+    user = query()
+    repos = user["repositories"]
+    while repos["pageInfo"]["hasNextPage"]:  # accounts with >100 repos
+        nxt = query(repos["pageInfo"]["endCursor"])["repositories"]
+        repos["nodes"].extend(nxt["nodes"])
+        repos["pageInfo"] = nxt["pageInfo"]
+    return user
 
 
 def fmt(n):
@@ -83,7 +94,7 @@ def render(u):
     stats = [
         ("★", "STARS COLLECTED", fmt(stars)),
         ("⌁", "CONTRIBUTIONS · 1Y", fmt(cc["contributionCalendar"]["totalContributions"])),
-        ("◆", "COMMITS · 1Y", fmt(cc["totalCommitContributions"] + cc["restrictedContributionsCount"])),
+        ("◆", "COMMITS · 1Y", fmt(cc["totalCommitContributions"])),
         ("⇄", "PULL REQUESTS", fmt(u["pullRequests"]["totalCount"])),
         ("!", "ISSUES OPENED", fmt(u["issues"]["totalCount"])),
         ("◎", "PUBLIC REPOS", fmt(u["repositories"]["totalCount"])),
@@ -144,8 +155,8 @@ def render(u):
   .pct {{ font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #94a3b8; }}
   .rule {{ stroke: #30363d; stroke-opacity: 1; stroke-dasharray: 2 4; }}
   .orbit {{ fill: none; stroke: #8b949e; stroke-opacity: .25; }}
-  .row {{ animation: boot .6s ease-out both; }}
-  @keyframes boot {{ from {{ opacity: 0; transform: translateX(-12px) }} to {{ opacity: 1; transform: none }} }}
+  .row {{ animation: boot .6s ease-out backwards; }}
+  @keyframes boot {{ from {{ transform: translateX(-12px) }} to {{ transform: none }} }}
   .sweep {{ transform-origin: {cx}px {cy}px; animation: spin 6s linear infinite; }}
   @keyframes spin {{ to {{ transform: rotate(360deg) }} }}
   .dot {{ animation: blink 1.4s ease-in-out infinite; }}
@@ -178,5 +189,13 @@ def render(u):
 
 if __name__ == "__main__":
     OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(render(fetch()))
-    print("wrote", OUT)
+    new = render(fetch())
+    # Only rewrite when something other than the sync timestamp changed,
+    # so the daily job doesn't create a commit just to bump the clock.
+    strip = lambda s: re.sub(r"LAST SYNC [^·]*·", "", s)
+    old = OUT.read_text(encoding="utf-8") if OUT.exists() else ""
+    if strip(old) == strip(new):
+        print("telemetry unchanged")
+    else:
+        OUT.write_text(new, encoding="utf-8")
+        print("wrote", OUT)

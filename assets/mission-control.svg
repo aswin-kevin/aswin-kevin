@@ -9,8 +9,8 @@
   .pct { font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #94a3b8; }
   .rule { stroke: #30363d; stroke-opacity: 1; stroke-dasharray: 2 4; }
   .orbit { fill: none; stroke: #8b949e; stroke-opacity: .25; }
-  .row { animation: boot .6s ease-out both; }
-  @keyframes boot { from { opacity: 0; transform: translateX(-12px) } to { opacity: 1; transform: none } }
+  .row { animation: boot .6s ease-out backwards; }
+  @keyframes boot { from { transform: translateX(-12px) } to { transform: none } }
   .sweep { transform-origin: 870px 205px; animation: spin 6s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg) } }
   .dot { animation: blink 1.4s ease-in-out infinite; }
@@ -28,7 +28,7 @@
 
 <circle cx="40" cy="42" r="5" fill="#22c55e" class="dot"/>
 <text x="54" y="47" class="hdr">MISSION CONTROL · TELEMETRY</text>
-<text x="1160" y="47" class="meta" text-anchor="end">LAST SYNC 2026-11-27 02:11 UTC · 8.9 YEARS IN ORBIT</text>
+<text x="1160" y="47" class="meta" text-anchor="end">LAST SYNC 2026-11-27 02:28 UTC · 8.9 YEARS IN ORBIT</text>
 
   <g class="row" style="animation-delay:0.00s">
     <text x="50" y="118" class="icon">★</text>
@@ -45,13 +45,13 @@
   <g class="row" style="animation-delay:0.24s">
     <text x="50" y="234" class="icon">◆</text>
     <text x="78" y="220" class="lbl">COMMITS · 1Y</text>
-    <text x="78" y="244" class="val">1,090</text>
+    <text x="78" y="244" class="val">555</text>
     <line x1="78" y1="254" x2="300" y2="254" class="rule"/>
   </g>
   <g class="row" style="animation-delay:0.36s">
     <text x="50" y="292" class="icon">⇄</text>
     <text x="78" y="278" class="lbl">PULL REQUESTS</text>
-    <text x="78" y="302" class="val">22</text>
+    <text x="78" y="302" class="val">45</text>
     <line x1="78" y1="312" x2="300" y2="312" class="rule"/>
   </g>
   <g class="row" style="animation-delay:0.48s">

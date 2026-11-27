@@ -10,8 +10,8 @@
   .ct { font: 700 20px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #e6edf3; }
   .cb { font: 400 13.5px 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; fill: #8b949e; }
   .chip { font: 600 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #c9d1d9; letter-spacing: .5px; }
-  .card { animation: rise .7s ease-out both; }
-  @keyframes rise { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+  .card { animation: rise .7s ease-out backwards; }
+  @keyframes rise { from { transform: translateY(10px) } to { transform: none } }
   .dot { animation: blink 1.4s ease-in-out infinite; }
   @keyframes blink { 50% { opacity: .2 } }
 </style>
